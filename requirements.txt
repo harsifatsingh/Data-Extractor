@@ -1,0 +1,6 @@
+Flask
+pdfplumber
+python-docx
+pytesseract
+Pillow
+openai
