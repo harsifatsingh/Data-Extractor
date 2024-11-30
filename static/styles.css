@@ -1,46 +1,176 @@
 /* static/styles.css */
+
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .container {
-    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    text-align: center;
-    width: 300px;
+    box-sizing: border-box;
 }
 
-h1 {
+.upload-card, .result-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+}
+
+.upload-card h1, .result-card h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
 }
 
-input[type="file"] {
-    margin-bottom: 15px;
-}
-
-button {
+.custom-file-upload {
+    display: inline-block;
     padding: 10px 20px;
-    background-color: #28a745;
-    border: none;
+    cursor: pointer;
+    background-color: #007bff;
     color: #fff;
     border-radius: 5px;
-    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
 }
 
-button:hover {
+.custom-file-upload:hover {
+    background-color: #0056b3;
+}
+
+#document {
+    display: none;
+}
+
+#file-selected {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+    text-decoration: none;
+}
+
+.btn:hover {
     background-color: #218838;
 }
 
-.flashes {
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 15px;
-    color: red;
+.back-btn {
+    background-color: #6c757d;
+}
+
+.back-btn:hover {
+    background-color: #5a6268;
+}
+
+.copy-btn {
+    background-color: #17a2b8;
+}
+
+.copy-btn:hover {
+    background-color: #117a8b;
+}
+
+.clear-btn {
+    background-color: #dc3545;
+    margin-top: 10px;
+}
+
+.clear-btn:hover {
+    background-color: #c82333;
+    color: #fff;
+    border: none;
+}
+
+.alert {
+    background-color: #ffc107;
+    padding: 10px;
+    border-radius: 5px;
+    color: #856404;
+    margin-bottom: 20px;
+}
+
+.text-container {
+    max-height: 500px;
+    overflow-y: auto;
+    text-align: left;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .upload-card, .result-card {
+        padding: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .custom-file-upload {
+        width: 100%;
+        text-align: center;
+    }
+
+    .clear-btn {
+        width: 100%;
+    }
+}
+
+/* Toastr Custom Styles (Optional) */
+#toast-container > .toast-success {
+    background-color: #28a745 !important;
+}
+
+#toast-container > .toast-error {
+    background-color: #dc3545 !important;
 }

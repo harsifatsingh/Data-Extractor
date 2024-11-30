@@ -1,0 +1,72 @@
+<!-- templates/result.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extraction Result</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Toastr CSS for Notifications -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="result-card">
+            <h1><i class="fa fa-file-text"></i> Extraction Result</h1>
+            <div class="text-container">
+                <pre id="extracted-text">{{ data.raw_text }}</pre>
+            </div>
+            <button class="btn copy-btn" onclick="copyToClipboard()">
+                <i class="fa fa-copy"></i> Copy Text
+            </button>
+            <button class="btn toggle-details-btn" onclick="toggleDetails()">
+                <i class="fa fa-info-circle"></i> Show Details
+            </button>
+            <div id="details" style="display: none; text-align: left; margin-top: 20px;">
+                <h2>Entities</h2>
+                <ul>
+                    {% for entity, label in data.entities %}
+                        <li><strong>{{ label }}:</strong> {{ entity }}</li>
+                    {% endfor %}
+                </ul>
+                <h2>Sentiment Analysis</h2>
+                <p><strong>Polarity:</strong> {{ data.sentiment.polarity }}</p>
+                <p><strong>Subjectivity:</strong> {{ data.sentiment.subjectivity }}</p>
+            </div>
+            <a href="{{ url_for('upload_form') }}" class="btn back-btn">
+                <i class="fa fa-arrow-left"></i> Upload Another Document
+            </a>
+        </div>
+    </div>
+
+    <!-- Toastr JS for Notifications -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- JavaScript for Copy and Toggle Details -->
+    <script>
+        function copyToClipboard(){
+            const text = document.getElementById('extracted-text').innerText;
+            navigator.clipboard.writeText(text).then(function() {
+                // Success feedback using Toastr
+                toastr.success('Text copied to clipboard!');
+            }, function(err) {
+                // Error feedback using Toastr
+                toastr.error('Failed to copy text.');
+            });
+        }
+
+        function toggleDetails(){
+            const details = document.getElementById('details');
+            if(details.style.display === "none"){
+                details.style.display = "block";
+            } else {
+                details.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
