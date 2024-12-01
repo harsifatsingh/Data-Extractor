@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, request, redirect, url_for, render_template, flash, jsonify
 import os
 from werkzeug.utils import secure_filename
@@ -6,7 +5,7 @@ import pdfplumber
 from docx import Document
 import pytesseract
 from PIL import Image
-import fitz  # PyMuPDF
+import fitz
 import re
 import spacy
 from textblob import TextBlob
@@ -14,7 +13,6 @@ import hashlib
 import redis
 import json
 import logging
-# from your_custom_modules import process_document_task  # If using Celery
 
 # Initialize Flask app
 app = Flask(__name__)
